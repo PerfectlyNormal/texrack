@@ -1,0 +1,9 @@
+\documentclass[border=2pt,varwidth]{standalone}
+\usepackage{standalone}
+\usepackage{amsmath}
+\begin{document}
+<% if math_mode? %>\[<% end %>
+<%= @data %>
+<% if math_mode? %>\]<% end %>
+\end{document}
+
