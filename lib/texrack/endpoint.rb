@@ -31,6 +31,15 @@ module Texrack
       def math_mode?
         params[:math] != "0"
       end
+
+      def packages
+        found = {}
+        params[:packages].to_s.split("|").each do |package|
+          details = package.match /(?:\[([^\]]+)\])?([A-Za-z]+)/
+          found[details[2]] = details[1]
+        end
+        found
+      end
     end
   end
 end

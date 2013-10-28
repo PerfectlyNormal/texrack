@@ -1,5 +1,8 @@
 \documentclass[border=2pt,varwidth]{standalone}
 \usepackage{standalone}
+<% packages.each_pair do |package, arguments| %>
+  \usepackage<% if arguments %>[<%= arguments.to_s %>]<% end %>{<%= package %>}
+<% end %>
 \usepackage{amsmath}
 \begin{document}
 <% if math_mode? %>\[<% end %>
