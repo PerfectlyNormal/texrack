@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/PerfectlyNormal/texrack"
   s.summary     = %q{Rack microservice to render LaTeX as PNG}
   s.description = %q{texrack is a microservice that renders LaTeX as PNG files. Can be mounted in a Rack app}
+  s.licenses    = "MIT"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
