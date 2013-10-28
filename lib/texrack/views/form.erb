@@ -9,9 +9,29 @@
 <div class="container">
 <h1 class="page-header">Render <img src="/?data=\LaTeX&math=0" alt="LaTeX"> as a PNG</h1>
 
-<form action="/" method="POST">
-  <p><textarea name="data"></textarea></p>
-  <p><input type="submit" class="btn btn-primary" value="Render PNG"></p>
+<form role="form" action="/" method="POST">
+  <div class="form-group">
+    <label for="data">LaTeX to render</label>
+    <textarea class="form-control" id="data" name="data" rows="5"></textarea>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="hidden" name="math" value="0">
+      <input type="checkbox" checked name="math" value="1"> Render in math mode?
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="packages">Extra packages to include</label>
+    <input type="text" class="form-control" id="packages" name="packages">
+    <p class="help-block">
+      Separate packages with a pipe (|).
+      Arguments are also supported. Example: "[english]babel|amsmath"
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary" value="Render PNG">
+  </div>
 </form>
 </div>
 </body>
