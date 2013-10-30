@@ -7,9 +7,9 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="page-header">Render <img src="/?data=\LaTeX&math=0" alt="LaTeX"> as a PNG</h1>
+    <h1 class="page-header">Render <img src="<%= root_path %>?data=\LaTeX&math=0" alt="LaTeX"> as a PNG</h1>
 
-    <form role="form" action="/" method="POST">
+    <form role="form" action="<%= root_path %>" method="POST">
       <div class="form-group">
         <label for="data">LaTeX to render</label>
         <textarea class="form-control" id="data" name="data" rows="5"></textarea>

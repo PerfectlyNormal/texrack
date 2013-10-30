@@ -32,6 +32,10 @@ module Texrack
         params[:math] != "0"
       end
 
+      def root_path
+        "#{env['SCRIPT_NAME']}/"
+      end
+
       def packages
         found = {}
         params[:packages].to_s.split("|").each do |package|
