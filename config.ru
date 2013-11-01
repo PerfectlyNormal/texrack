@@ -1,4 +1,4 @@
 $:.unshift 'lib'
 require 'texrack'
 
-run Texrack::Endpoint
+run Texrack::Endpoint.new
