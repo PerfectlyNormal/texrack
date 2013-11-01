@@ -25,8 +25,10 @@ module Texrack
         output     = Tempfile.new(["texrack-output", ".png"])
         pdf_source = erb :latex
         pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
-        png = Texrack::PdfToPng.new(pdf).to_file(output)
-        png
+        png = Texrack::PdfToPng.new(pdf, logger).to_file(output)
+        send_file png, {
+          disposition: :inline
+        }
       rescue Texrack::LatexNotFoundError
         logger.error "Could not find pdflatex in #{ENV['PATH']}"
         send_file File.join(settings.public_folder, "missing-pdflatex.png"), {

@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency 'sinatra', '~> 1.4.4'
-  s.add_dependency 'rmagick', '~> 2.13.2'
+  s.add_dependency 'cocaine', '~> 0.5.3'
 end

@@ -1,15 +1,18 @@
-require 'RMagick'
+require 'cocaine'
 
 class Texrack::PdfToPng
-  def initialize(blob)
-    @img = Magick::Image.from_blob(blob) do |info|
-      info.density = "300x300"
-      info.quality = 90
-    end[0]
+  attr_reader :pdf_path, :logger, :line
+
+  def initialize(pdf_path, logger)
+
+    @pdf_path = pdf_path
+    @logger   = logger
+    @line     = Cocaine::CommandLine.new("convert",
+      "-density 300x300 -quality 90 :in :out", logger: logger)
   end
 
   def to_file(file)
-    @img.write('png:' + file.path)
-    file
+    line.run(in: pdf_path, out: file.path)
+    file.path
   end
 end
