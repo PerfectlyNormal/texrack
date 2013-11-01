@@ -29,6 +29,11 @@ module Texrack
         send_file png, {
           disposition: :inline
         }
+      rescue Texrack::LatexFailedError
+        send_file File.join(settings.public_folder, "latex-failed.png"), {
+          disposition: :inline,
+          status: 500
+        }
       rescue Texrack::LatexNotFoundError
         logger.error "Could not find pdflatex in #{ENV['PATH']}"
         send_file File.join(settings.public_folder, "missing-pdflatex.png"), {

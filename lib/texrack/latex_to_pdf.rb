@@ -43,16 +43,17 @@ class Texrack::LatexToPdf
         end
       end)
 
-    output = input.path.sub(/\.tex$/, '.pdf')
-    if File.exist?(output)
-      result = File.read(output)
-    else
-      logger.warn "Unable to find file #{output}"
-      raise "pdflatex failed"
+    output  = input.path.sub(/\.tex$/, '.pdf')
+    logfile = input.path.sub(/\.tex$/, '.log')
+    if !File.exist?(output)
+      loglines = File.read(logfile)
+      logger.error "Unable to find file #{output}"
+      logger.error "LaTeX output: #{loglines}"
+      raise Texrack::LatexFailedError
     end
 
     input.close
-    result
+    output
   end
 
   def has_pdflatex?
