@@ -35,6 +35,12 @@ module Texrack
           disposition: :inline,
           status: 500
         }
+      rescue Texrack::ConvertNotFoundError
+        logger.error "Could not find convert (ImageMagick) in #{ENV['PATH']}"
+        send_file File.join(settings.public_folder, "missing-convert.png"), {
+          disposition: :inline,
+          status: 500
+        }
       end
     end
 

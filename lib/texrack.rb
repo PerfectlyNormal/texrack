@@ -5,4 +5,5 @@ require 'texrack/endpoint'
 
 module Texrack
   class LatexNotFoundError < StandardError; end
+  class ConvertNotFoundError < StandardError; end
 end

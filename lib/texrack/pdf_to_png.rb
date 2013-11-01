@@ -4,7 +4,6 @@ class Texrack::PdfToPng
   attr_reader :pdf_path, :logger, :line
 
   def initialize(pdf_path, logger)
-
     @pdf_path = pdf_path
     @logger   = logger
     @line     = Cocaine::CommandLine.new("convert",
@@ -14,5 +13,7 @@ class Texrack::PdfToPng
   def to_file(file)
     line.run(in: pdf_path, out: file.path)
     file.path
+  rescue Cocaine::CommandNotFoundError => e
+    raise Texrack::ConvertNotFoundError
   end
 end
