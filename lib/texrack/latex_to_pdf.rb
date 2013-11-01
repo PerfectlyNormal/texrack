@@ -15,6 +15,8 @@ class Texrack::LatexToPdf
   #
   # pdflatex is used to convert the file.
   def generate_pdf
+    raise Texrack::LatexNotFoundError unless has_pdflatex?
+
     logger.debug "Generating PDF from #{latex}"
     input = Tempfile.new(["texrack-input", ".tex"])
     input.binmode
@@ -52,4 +54,9 @@ class Texrack::LatexToPdf
     input.close
     result
   end
+
+  def has_pdflatex?
+    ENV["PATH"].split(':').any? {|x| FileTest.executable? "#{x}/pdflatex" }
+  end
+  private :has_pdflatex?
 end
