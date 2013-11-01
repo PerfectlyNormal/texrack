@@ -5,8 +5,7 @@ Simple Rack middleware to render LaTeX to PNGs on the fly.
 ## Requirements
 
 * `pdflatex` must exist in `$PATH`
-* RMagick does the conversion from PDF to PNG, so `ImageMagick` must be
-  installed and available.
+* `convert` (from ImageMagick) must exist in `$PATH`
 
 ## Configuration
 
