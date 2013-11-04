@@ -31,3 +31,8 @@ turns into
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{amssymb}
 ```
+
+### Always respond with 200 OK
+If you are dealing with software incapable of proper status codes (looking at
+you, Flash), you can pass `always_200=1` and it'll respond with 200 OK even
+though we should really respond with a 5xx.

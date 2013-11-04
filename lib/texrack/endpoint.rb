@@ -32,19 +32,19 @@ module Texrack
       rescue Texrack::LatexFailedError
         send_file File.join(settings.public_folder, "latex-failed.png"), {
           disposition: :inline,
-          status: 500
+          status: error_status
         }
       rescue Texrack::LatexNotFoundError
         logger.error "Could not find pdflatex in #{ENV['PATH']}"
         send_file File.join(settings.public_folder, "missing-pdflatex.png"), {
           disposition: :inline,
-          status: 500
+          status: error_status
         }
       rescue Texrack::ConvertNotFoundError
         logger.error "Could not find convert (ImageMagick) in #{ENV['PATH']}"
         send_file File.join(settings.public_folder, "missing-convert.png"), {
           disposition: :inline,
-          status: 500
+          status: error_status
         }
       end
     end
@@ -52,6 +52,14 @@ module Texrack
     helpers do
       def math_mode?
         params[:math] != "0"
+      end
+
+      def always_respond_with_200?
+        params[:always_200] == "1"
+      end
+
+      def error_status
+        always_respond_with_200? ? 200 : 500
       end
 
       def root_path
