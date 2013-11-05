@@ -1,14 +1,9 @@
 class Texrack::LatexToPdf
-  def self.config
-    @config ||= {command: 'pdflatex', arguments: []}
-  end
+  attr_reader :latex, :logger
 
-  attr_reader :config, :latex, :logger
-
-  def initialize(latex, logger=Logger.new(STDOUT), overrides = {})
+  def initialize(latex, logger=Logger.new(STDOUT))
     @latex  = latex
     @logger = logger
-    @config = self.class.config.merge(overrides)
   end
 
   # Converts a string of LaTeX code into a binary string of PDF.
@@ -27,11 +22,10 @@ class Texrack::LatexToPdf
       fork do
         begin
           Dir.chdir File.dirname(input)
-          args = config[:arguments] + %w[-shell-escape -interaction batchmode -halt-on-error] + [input.path]
+          args = %w[-shell-escape -interaction batchmode -halt-on-error] + [input.path]
 
-
-          logger.debug "Texrack executing: #{config[:command]} #{args}"
-          exec config[:command], *args
+          logger.debug "Texrack executing: pdflatex #{args}"
+          exec "pdflatex", *args
         rescue
           logger.error "#{$!.message}:\n#{$!.backtrace.join("\n")}\n"
         ensure
