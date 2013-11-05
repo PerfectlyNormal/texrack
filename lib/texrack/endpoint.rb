@@ -7,22 +7,21 @@ module Texrack
     set :public_folder, File.dirname(__FILE__) + '/static'
 
     get '/' do
-      if params[:data].to_s.strip != ""
-        render_png(params[:data])
+      if data != ""
+        render_png
       else
         erb :form
       end
     end
 
     post '/' do
-      render_png(params[:data])
+      render_png
     end
 
-    def render_png(source)
+    def render_png
       content_type 'image/png'
 
       begin
-        @data      = source
         output     = Tempfile.new(["texrack-output", ".png"])
         pdf_source = erb :latex
         pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
@@ -61,6 +60,10 @@ module Texrack
 
       def root_path
         "#{env['SCRIPT_NAME']}/"
+      end
+
+      def data
+        params[:data].to_s.strip
       end
 
       def packages
