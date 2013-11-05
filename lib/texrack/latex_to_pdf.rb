@@ -1,6 +1,6 @@
 class Texrack::LatexToPdf
   def self.config
-    @config ||= {command: 'pdflatex', arguments: [], parse_twice: false}
+    @config ||= {command: 'pdflatex', arguments: []}
   end
 
   attr_reader :config, :latex, :logger
@@ -29,10 +29,6 @@ class Texrack::LatexToPdf
           Dir.chdir File.dirname(input)
           args = config[:arguments] + %w[-shell-escape -interaction batchmode -halt-on-error] + [input.path]
 
-          if config[:parse_twice]
-            logger.debug("Texrack executing (parse twice): #{config[:command]} -draftmode #{args}")
-            system config[:command], '-draftmode', *args
-          end
 
           logger.debug "Texrack executing: #{config[:command]} #{args}"
           exec config[:command], *args
