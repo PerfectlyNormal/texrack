@@ -20,36 +20,33 @@ module Texrack
 
     def render_png(source)
       content_type 'image/png'
+
       begin
         @data      = source
         output     = Tempfile.new(["texrack-output", ".png"])
         pdf_source = erb :latex
         pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
         png = Texrack::PdfToPng.new(pdf, logger).to_file(output)
-        send_file png, {
-          disposition: :inline
-        }
+        send_file png, disposition: :inline
       rescue Texrack::LatexFailedError
-        send_file File.join(settings.public_folder, "latex-failed.png"), {
-          disposition: :inline,
-          status: error_status
-        }
+        send_static_error "latex-failed.png"
       rescue Texrack::LatexNotFoundError
         logger.error "Could not find pdflatex in #{ENV['PATH']}"
-        send_file File.join(settings.public_folder, "missing-pdflatex.png"), {
-          disposition: :inline,
-          status: error_status
-        }
+        send_static_error "missing-pdflatex.png"
       rescue Texrack::ConvertNotFoundError
         logger.error "Could not find convert (ImageMagick) in #{ENV['PATH']}"
-        send_file File.join(settings.public_folder, "missing-convert.png"), {
-          disposition: :inline,
-          status: error_status
-        }
+        send_static_error "missing-convert.png"
       end
     end
 
     helpers do
+      def send_static_error(filename)
+        send_file File.join(settings.public_folder, filename), {
+          disposition: :inline,
+          status: error_status
+        }
+      end
+
       def math_mode?
         params[:math] != "0"
       end
