@@ -1,4 +1,4 @@
-# 0.3.0 / unreleased
+# 0.3.0 / 2013-11-05
 
 * Allow forcing the response status to 200 OK
 * Remove unused code
