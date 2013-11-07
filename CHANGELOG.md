@@ -1,3 +1,8 @@
+# 0.5.1 / 2013-11-07
+
+* Oh, git. And stupid authors…
+  Make sure `File.chmod` is called **before** sending the file.
+
 # 0.5.0 / 2013-11-07
 
 * A typo snuck in, referencing FileText instead of FileTest
