@@ -4,15 +4,15 @@ Simple Rack middleware to render LaTeX to PNGs on the fly.
 
 ## Requirements
 
-* `pdflatex` must exist in `$PATH`
-* `convert` (from ImageMagick) must exist in `$PATH`
+* `pdflatex` must be installed
+* `convert` (from ImageMagick) must be installed
 
 ## Configuration
 
 If "pdflatex" or "convert" is not available in `PATH`, you can change
 `Texrack.config` and specify where to find them.
 
-The default configuration is 
+The default configuration is
 ```ruby
 Texrack.config = {
   pdflatex: "pdflatex",
