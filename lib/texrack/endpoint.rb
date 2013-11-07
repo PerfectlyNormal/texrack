@@ -39,6 +39,10 @@ module Texrack
     end
 
     helpers do
+      def logger
+        @logger ||= (Texrack.config[:logger] || Logger.new(STDERR))
+      end
+
       def send_static_error(filename)
         send_file File.join(settings.public_folder, filename), {
           disposition: :inline,

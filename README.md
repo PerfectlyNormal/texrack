@@ -12,11 +12,16 @@ Simple Rack middleware to render LaTeX to PNGs on the fly.
 If "pdflatex" or "convert" is not available in `PATH`, you can change
 `Texrack.config` and specify where to find them.
 
+If you want a custom logger, set `Texrack.config[:logger]` to anything
+responding to `#warn`, `#debug`, `#info` and so on.
+For example `Rails.logger` if mounting inside a Rails application.
+
 The default configuration is
 ```ruby
 Texrack.config = {
   pdflatex: "pdflatex",
   convert:  "convert",
+  logger:   nil,
 }
 ```
 

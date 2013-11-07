@@ -12,6 +12,7 @@ module Texrack
     @config ||= {
       pdflatex: "pdflatex",
       convert:  "convert",
+      logger:   nil
     }
   end
 end
