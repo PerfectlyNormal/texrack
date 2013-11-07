@@ -5,6 +5,7 @@ module Texrack
   class Endpoint < Sinatra::Base
     enable :logging
     set :public_folder, File.dirname(__FILE__) + '/static'
+    set :views,         File.dirname(__FILE__) + '/views'
 
     get '/' do
       if data != ""
