@@ -1,4 +1,4 @@
-# 0.5.0 / unreleased
+# 0.5.0 / 2013-11-07
 
 * A typo snuck in, referencing FileText instead of FileTest
 * Make the generated PNG readable by the world, to avoid potential issues
