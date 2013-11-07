@@ -9,6 +9,17 @@ Simple Rack middleware to render LaTeX to PNGs on the fly.
 
 ## Configuration
 
+If "pdflatex" or "convert" is not available in `PATH`, you can change
+`Texrack.config` and specify where to find them.
+
+The default configuration is 
+```ruby
+Texrack.config = {
+  pdflatex: "pdflatex",
+  convert:  "convert",
+}
+```
+
 ## Usage
 
 Either POST or GET to the configured URL with `data` set to the LaTeX source to

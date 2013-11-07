@@ -24,8 +24,8 @@ class Texrack::LatexToPdf
           Dir.chdir File.dirname(input)
           args = %w[-shell-escape -interaction batchmode -halt-on-error] + [input.path]
 
-          logger.debug "Texrack executing: pdflatex #{args}"
-          exec "pdflatex", *args
+          logger.debug "Texrack executing: #{command} #{args}"
+          exec command, *args
         rescue
           logger.error "#{$!.message}:\n#{$!.backtrace.join("\n")}\n"
         ensure
@@ -46,7 +46,12 @@ class Texrack::LatexToPdf
     output
   end
 
+  def command
+    Texrack.config[:pdflatex] || "pdflatex"
+  end
+
   def has_pdflatex?
+    return true if File.exists?(command) && FileText.executable?(command)
     ENV["PATH"].split(':').any? {|x| FileTest.executable? "#{x}/pdflatex" }
   end
   private :has_pdflatex?

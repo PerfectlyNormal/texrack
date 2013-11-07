@@ -1,3 +1,7 @@
+# 0.4.0 / unreleased
+
+* Allow configuring where to find pdflatex
+
 # 0.3.0 / 2013-11-05
 
 * Allow forcing the response status to 200 OK

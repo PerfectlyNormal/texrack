@@ -7,4 +7,11 @@ module Texrack
   class LatexNotFoundError < StandardError; end
   class ConvertNotFoundError < StandardError; end
   class LatexFailedError < StandardError; end
+
+  def self.config
+    @config ||= {
+      pdflatex: "pdflatex",
+      convert:  "convert",
+    }
+  end
 end

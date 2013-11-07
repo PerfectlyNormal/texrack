@@ -6,8 +6,12 @@ class Texrack::PdfToPng
   def initialize(pdf_path, logger)
     @pdf_path = pdf_path
     @logger   = logger
-    @line     = Cocaine::CommandLine.new("convert",
+    @line     = Cocaine::CommandLine.new(command,
       "-density 300x300 -quality 90 :in :out", logger: logger)
+  end
+
+  def command
+    Texrack.config[:convert] || "convert"
   end
 
   def to_file(file)
