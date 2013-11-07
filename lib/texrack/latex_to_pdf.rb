@@ -51,7 +51,7 @@ class Texrack::LatexToPdf
   end
 
   def has_pdflatex?
-    return true if File.exists?(command) && FileText.executable?(command)
+    return true if File.exists?(command) && FileTest.executable?(command)
     ENV["PATH"].split(':').any? {|x| FileTest.executable? "#{x}/pdflatex" }
   end
   private :has_pdflatex?
