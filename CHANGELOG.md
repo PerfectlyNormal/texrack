@@ -1,6 +1,6 @@
-# 0.4.0 / unreleased
+# 0.4.0 / 2013-11-07
 
-* Allow configuring where to find pdflatex
+* Allow configuring where to find binaries
 
 # 0.3.0 / 2013-11-05
 
