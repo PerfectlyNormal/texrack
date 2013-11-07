@@ -28,6 +28,7 @@ module Texrack
         pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
         png = Texrack::PdfToPng.new(pdf, logger).to_file(output)
         send_file png, disposition: :inline
+        File.chmod(0644, png)
       rescue Texrack::LatexFailedError
         send_static_error "latex-failed.png"
       rescue Texrack::LatexNotFoundError
