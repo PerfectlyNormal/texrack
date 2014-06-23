@@ -22,6 +22,7 @@ Texrack.config = {
   pdflatex: "pdflatex",
   convert:  "convert",
   logger:   nil,
+  cache_dir: Dir.mktmpdir
 }
 ```
 
@@ -52,3 +53,10 @@ turns into
 If you are dealing with software incapable of proper status codes (looking at
 you, Flash), you can pass `always_200=1` and it'll respond with 200 OK even
 though we should really respond with a 5xx.
+
+### Caching
+Generated images are cached by default, so we don't have to shell out to
+pdflatex and imagemagick all the time. Configure `cache_dir` to store the
+files somewhere safe, otherwise a tempdir is created and used.
+
+The application sends ETags for each generated image.

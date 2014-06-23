@@ -1,3 +1,7 @@
+# 0.6.0 / unreleased
+
+* Cache the generated images and return proper ETags
+
 # 0.5.1 / 2013-11-07
 
 * Oh, git. And stupid authors…
