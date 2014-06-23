@@ -1,4 +1,4 @@
-# texrack
+# texrack [![Code Climate](https://codeclimate.com/github/PerfectlyNormal/texrack.png)](https://codeclimate.com/github/PerfectlyNormal/texrack)
 
 Simple Rack middleware to render LaTeX to PNGs on the fly.
 
