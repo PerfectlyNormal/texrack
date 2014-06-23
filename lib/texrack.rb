@@ -1,3 +1,5 @@
+require 'tmpdir'
+
 require 'texrack/version'
 require 'texrack/output_file'
 require 'texrack/latex_to_pdf'
