@@ -22,22 +22,18 @@ module Texrack
     end
 
     def render_png
-      content_type 'image/png'
-      etag digest
-      cache_control :public, max_age: 60 * 60 * 24 * 365
-      expires 60 * 60 * 24 * 365
+      set_headers
 
       begin
-        output     = Texrack::OutputFile.new(digest)
-        if output.exists?
-          send_file output, disposition: :inline
-        else
+        output = Texrack::OutputFile.new(digest)
+        unless output.exists?
           pdf_source = erb :latex
           pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
-          png = Texrack::PdfToPng.new(pdf, logger).to_file(output)
+          Texrack::PdfToPng.new(pdf, logger).to_file(output)
           output.finish
-          send_file png, disposition: :inline
         end
+
+        send_file output, disposition: :inline
       rescue Texrack::LatexFailedError
         send_static_error "latex-failed.png"
       rescue Texrack::LatexNotFoundError
@@ -60,6 +56,13 @@ module Texrack
           disposition: :inline,
           status: error_status
         }
+      end
+
+      def set_headers
+        content_type 'image/png'
+        etag digest
+        cache_control :public, max_age: 60 * 60 * 24 * 365
+        expires 60 * 60 * 24 * 365
       end
 
       def math_mode?
