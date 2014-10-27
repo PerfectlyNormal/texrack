@@ -1,4 +1,4 @@
-# 0.6.0 / unreleased
+# 0.6.0 / 2014-06-23
 
 * Cache the generated images and return proper ETags
 
