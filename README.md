@@ -55,6 +55,9 @@ If you are dealing with software incapable of proper status codes (looking at
 you, Flash), you can pass `always_200=1` and it'll respond with 200 OK even
 though we should really respond with a 5xx.
 
+### Trim result image
+Pass `trim=1` to tell ImageMagick to trim the result using [-trim](http://www.imagemagick.org/Usage/crop/#trim).
+
 ### crossdomain.xml
 If TexRack is used from Flash, and hosted on a different domain, you might need a crossdomain.xml file.
 Set `Texrack.config[:allowed_domains]` to an array of domains that should be allowed access.
