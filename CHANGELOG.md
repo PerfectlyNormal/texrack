@@ -1,3 +1,6 @@
+# 0.6.1 / unreleased
+
+* Expire the cache when the version of Texrack changes
 # 0.6.0 / 2014-06-23
 
 * Cache the generated images and return proper ETags

@@ -86,7 +86,7 @@ module Texrack
       end
 
       def digest
-        @digest ||= Digest::SHA1.hexdigest("#{data}:#{math_mode?}:#{packages_source}")
+        @digest ||= Digest::SHA1.hexdigest("#{Texrack::VERSION}:#{data}:#{math_mode?}:#{packages_source}")
       end
 
       def packages_source
