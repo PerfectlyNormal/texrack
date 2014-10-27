@@ -1,3 +1,7 @@
+# 0.6.3 / 2014-10-27
+
+* Now includes the crossdomain template in the repository
+
 # 0.6.2 / 2014-10-27
 
 * Respond to /crossdomain.xml for Flash-based usage
