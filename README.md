@@ -22,7 +22,8 @@ Texrack.config = {
   pdflatex: "pdflatex",
   convert:  "convert",
   logger:   nil,
-  cache_dir: Dir.mktmpdir
+  cache_dir: Dir.mktmpdir,
+  allowed_domains: ['*.example.com']
 }
 ```
 
@@ -53,6 +54,13 @@ turns into
 If you are dealing with software incapable of proper status codes (looking at
 you, Flash), you can pass `always_200=1` and it'll respond with 200 OK even
 though we should really respond with a 5xx.
+
+### crossdomain.xml
+If TexRack is used from Flash, and hosted on a different domain, you might need a crossdomain.xml file.
+Set `Texrack.config[:allowed_domains]` to an array of domains that should be allowed access.
+
+Example:
+`allowed_domains: ['*.example.com']`
 
 ### Caching
 Generated images are cached by default, so we don't have to shell out to

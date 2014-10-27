@@ -1,3 +1,7 @@
+# 0.6.2 / unreleased
+
+* Respond to /crossdomain.xml for Flash-based usage
+
 # 0.6.1 / 2014-10-27
 
 * Expire the cache when the version of Texrack changes

@@ -16,7 +16,8 @@ module Texrack
       pdflatex: "pdflatex",
       convert:  "convert",
       logger:   nil,
-      cache_dir: Dir.mktmpdir
+      cache_dir: Dir.mktmpdir,
+      allowed_domains: ['*.example.com']
     }
   end
 end

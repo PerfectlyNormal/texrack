@@ -21,6 +21,11 @@ module Texrack
       render_png
     end
 
+    get '/crossdomain.xml' do
+      content_type 'application/xml'
+      erb :crossdomain
+    end
+
     def render_png
       begin
         output = Texrack::OutputFile.new(digest)
