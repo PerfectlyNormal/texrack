@@ -55,8 +55,8 @@ module Texrack
       end
 
       def send_static_error(filename)
-        send_file File.join(settings.public_folder, filename), {
         headers['ETag'] = ''
+        send_file File.join(settings.public_folder, filename), {
           disposition: :inline,
           status: error_status
         }
