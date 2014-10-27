@@ -1,4 +1,4 @@
-# 0.6.1 / unreleased
+# 0.6.1 / 2014-10-27
 
 * Expire the cache when the version of Texrack changes
 * Pass trim=1 to have ImageMagick trim the image before returning it
