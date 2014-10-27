@@ -1,4 +1,4 @@
-# 0.6.2 / unreleased
+# 0.6.2 / 2014-10-27
 
 * Respond to /crossdomain.xml for Flash-based usage
 
