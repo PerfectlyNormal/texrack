@@ -29,7 +29,7 @@ module Texrack
         unless output.exists?
           pdf_source = erb :latex
           pdf = Texrack::LatexToPdf.new(pdf_source, logger).generate_pdf
-          Texrack::PdfToPng.new(pdf, logger).to_file(output)
+          Texrack::PdfToPng.new(pdf, trim?, logger).to_file(output)
           output.finish
         end
 
@@ -69,6 +69,10 @@ module Texrack
         params[:math] != "0"
       end
 
+      def trim?
+        params[:trim] == "1"
+      end
+
       def always_respond_with_200?
         params[:always_200] == "1"
       end
@@ -86,7 +90,7 @@ module Texrack
       end
 
       def digest
-        @digest ||= Digest::SHA1.hexdigest("#{Texrack::VERSION}:#{data}:#{math_mode?}:#{packages_source}")
+        @digest ||= Digest::SHA1.hexdigest("#{Texrack::VERSION}:#{data}:#{math_mode?}:#{trim?}:#{packages_source}")
       end
 
       def packages_source

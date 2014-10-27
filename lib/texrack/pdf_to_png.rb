@@ -3,11 +3,12 @@ require 'cocaine'
 class Texrack::PdfToPng
   attr_reader :pdf_path, :logger, :line
 
-  def initialize(pdf_path, logger)
+  def initialize(pdf_path, trim, logger)
     @pdf_path = pdf_path
+    @trim     = trim
     @logger   = logger
     @line     = Cocaine::CommandLine.new(command,
-      "-density 300x300 -quality 90 :in :out", logger: logger)
+      "-density 300x300 -quality 90 #{"-trim" if trim} :in :out", logger: logger)
   end
 
   def command
