@@ -22,8 +22,6 @@ module Texrack
     end
 
     def render_png
-      set_headers
-
       begin
         output = Texrack::OutputFile.new(digest)
         unless output.exists?
@@ -33,6 +31,7 @@ module Texrack
           output.finish
         end
 
+        set_headers
         send_file output, disposition: :inline
       rescue Texrack::LatexFailedError
         send_static_error "latex-failed.png"
@@ -51,8 +50,8 @@ module Texrack
       end
 
       def send_static_error(filename)
-        headers['ETag'] = nil
         send_file File.join(settings.public_folder, filename), {
+        headers['ETag'] = ''
           disposition: :inline,
           status: error_status
         }
